@@ -85,7 +85,7 @@ class EmailUserCreationForm(UserCreationForm):
     def clean_email(self):
         email = self.cleaned_data["email"]
         if user_exists(email):
-            raise forms.ValidationError(_("A user with that email already exists."))
+            raise forms.ValidationError(self.error_messages['duplicate_username'])
         return email
 
     def save(self, commit=True):
